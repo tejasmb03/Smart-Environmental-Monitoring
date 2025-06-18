@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+  <!-- Hero Section -->
+  <div class="text-center my-5">
+    <h1 class="display-5 fw-bold">🌐 EnviroDash: Smart Environmental Monitoring</h1>
+    <p class="lead text-muted">Explore satellite and ground-based insights to track urbanization, vegetation health, water bodies, and more.</p>
+  </div>
+
+  <!-- Cards: Mini Projects -->
+  <div class="row g-4 justify-content-center">
+
+    {% for module in [
+      {"title": "Water Body Encroachment", "icon": "🌊", "route": "enchroach_view", "desc": "Compare before & after satellite images to detect encroachment."},
+      {"title": "Ground Urbanization", "icon": "🏙", "route": "ground_view", "desc": "View how land use changes year by year from the ground."},
+      {"title": "Satellite Water Analysis", "icon": "🛰", "route": "satellite_view", "desc": "Track water coverage using multi-year satellite data."},
+      {"title": "NDVI Analyzer", "icon": "🌿", "route": "ndvi_view", "desc": "Generate NDVI using Red & NIR bands to assess vegetation."},
+      {"title": "Urban Visualize", "icon": "📊", "route": "urban_visualize_view", "desc": "Visual trends of Bangalore's urban-rural growth."}
+    ] %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100 border-0 hover-shadow transition">
+        <div class="card-body">
+          <h5 class="card-title">{{ module.icon }} {{ module.title }}</h5>
+          <p class="card-text text-muted">{{ module.desc }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Highlights Section -->
+  <hr class="my-5">
+  <h4 class="mb-4 text-center">📌 Recent Insights</h4>
+  <div class="row g-4 justify-content-center">
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm">
+        <img src="{{ url_for('static', filename='outputs/urban_visualize/ndvi_ndbi_ndwi.png') }}" class="card-img-top" alt="Insight Chart">
+        <div class="card-body text-center">
+          <p class="text-muted">NDVI vs NDBI vs NDWI</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm">
+        <img src="{{ url_for('static', filename='outputs/urban_visualize/urban_vs_nonurban.png') }}" class="card-img-top" alt="Urban Growth Chart">
+        <div class="card-body text-center">
+          <p class="text-muted">Urban vs Non-Urban Growth</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

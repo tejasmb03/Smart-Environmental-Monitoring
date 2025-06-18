@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">📸 Seasonal Changes Over the Years (Ground-Data)</h2>
+
+<div class="row g-4">
+  {% for year, img_path in results.items() %}
+    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+      <div class="card border-0 shadow-sm hover-shadow h-100">
+        <div class="position-relative">
+          <img src="/{{ img_path }}" class="card-img-top rounded-top" alt="Ground View {{ year }}">
+          <span class="badge bg-dark position-absolute top-0 end-0 m-2 px-3 py-2 fs-6">{{ year }}</span>
+        </div>
+        <div class="card-body">
+          <p class="card-text text-muted">Urban expansion snapshot captured at ground level during {{ year }}.</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

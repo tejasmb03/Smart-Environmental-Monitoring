@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow-lg border-0 p-4">
+      <h2 class="text-center mb-3">🌿 NDVI Analyzer</h2>
+      <p class="text-muted text-center">
+        Upload the <strong>Red (Band 4)</strong> and <strong>NIR (Band 8)</strong> TIFF bands from Sentinel-2 to generate an NDVI image and assess vegetation health.
+      </p>
+
+      <form method="POST" enctype="multipart/form-data" class="mt-3">
+        <div class="mb-3">
+          <label class="form-label">🔴 Red Band (Band 4)</label>
+          <input type="file" name="red_band" accept=".tif,.tiff" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">🌕 NIR Band (Band 8)</label>
+          <input type="file" name="nir_band" accept=".tif,.tiff" class="form-control" required>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-4 mt-2">🌱 Generate NDVI</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% if image %}
+<hr class="my-5">
+<h4 class="text-center mb-4">🖼 NDVI Output</h4>
+
+<div class="d-flex justify-content-center" data-aos="zoom-in">
+  <img src="/{{ image }}" class="img-fluid border rounded shadow-sm" alt="NDVI Output" style="max-width: 90%;">
+</div>
+{% endif %}
+{% endblock %}

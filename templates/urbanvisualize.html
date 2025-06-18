@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">📊 Urban Visualize – Insights Dashboard</h2>
+
+<div class="accordion" id="chartAccordion">
+  {% for img in [
+    'land_types.png',
+    'vegetation_categories.png',
+    'urban_vs_nonurban.png',
+    'ndvi_ndbi_ndwi.png',
+    'heatmap.png',
+    'ndvi_vs_ndbi.png',
+    'correlation_matrix.png',
+    'impervious_surface.png',
+    'water_vs_ndwi.png',
+    'veg_vs_impervious.png',
+    'rural_vs_urban_population.png',
+    'urban_rural_ratio.png',
+    'population_increase_bar.png',
+    'stacked_area_chart.png',
+    'pie.png'
+  ] %}
+  <div class="accordion-item mb-3 shadow-sm">
+    <h2 class="accordion-header" id="heading{{ loop.index }}">
+      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}">
+        📌 {{ img.replace('_', ' ').replace('.png', '').title() }}
+      </button>
+    </h2>
+    <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" data-bs-parent="#chartAccordion">
+      <div class="accordion-body text-center">
+        <img src="{{ url_for('static', filename='outputs/urban_visualize/' ~ img) }}" class="img-fluid rounded border shadow-sm" alt="{{ img }}">
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
