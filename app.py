@@ -1,5 +1,3 @@
-# Flask App Blueprint to Combine Your Mini Projects
-
 from flask import Flask, render_template, request, redirect, url_for, send_file
 import os
 from utils import enchroach, ground, ndvi, satellite
@@ -67,5 +65,7 @@ def urban_visualize_view():
     return render_template('urbanvisualize.html')
 
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
